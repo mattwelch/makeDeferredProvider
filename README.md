@@ -25,9 +25,9 @@ Using promises, the flow is just a bit different:
 	var wh = SObjectModel.deferredObject('Warehouse');;
             
 	// Use the Remote Object to query for 10 warehouse records
-	wh.retrieve({ limit: 10 });
+	var whp = wh.retrieve({ limit: 10 });
 	
-	wh.then(
+	whp.then(
 	// The first function is invoked when the promise is successfully fulfilled
 		function(records){
 			console.log(records);
