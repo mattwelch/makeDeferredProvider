@@ -1,0 +1,25 @@
+<apex:page showHeader="true" sidebar="true">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<apex:includeScript value="{!$Resource.makeDeferredProvider}"/>
+<apex:remoteObjects jsNamespace="ThisModel">
+	<apex:remoteObjectModel name="Contact" jsShorthand="contact" fields="LastName, Name,Id,Email"/>
+	<apex:remoteObjectModel name="Account" jsShorthand="account" fields="Name,Id"/>
+</apex:remoteObjects >
+<script type="text/javascript">
+
+	makeDeferredProvider("ThisModel");
+
+	var c=ThisModel.deferredObject('contact',{LastName:"Hclew"});
+
+	var rc=c.create();
+
+	rc.then(function(result,e) {
+		console.log(result);
+		console.log(e);
+	},
+	function(err) {
+		console.log(err);
+	});
+
+</script>
+</apex:page>
